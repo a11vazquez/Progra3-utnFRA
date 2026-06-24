@@ -1,0 +1,56 @@
+
+body{
+    margin: 0px;
+}
+
+header, div, nav, ul, li, img{
+ border: 2.3px solid;
+}
+
+.header-img img{
+    width: 11px;
+}
+.header-img{
+    width: 5%;
+
+}
+
+.header-img{
+    display: flex;
+    justify-content: center;
+}
+.header-img-logo{
+    display: flex;
+    align-items: center;
+}
+.header-img-logo img{
+    width: 11px;
+}
+
+#store-logo img{
+    width: 14px;
+}
+.logo-lupa-Store{
+    width: 10%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header{
+    margin-left: 111px;
+    margin-right: 111px;
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+}
+header ul{
+    display: flex;
+    padding-left: 0;
+    justify-content: space-evenly;
+}
+header ul li{
+ list-style: none;
+}
+header nav{
+    width: 90%;
+}
