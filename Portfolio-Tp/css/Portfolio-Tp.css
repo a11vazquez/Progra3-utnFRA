@@ -1,0 +1,176 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+body{
+    margin: 0;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.resaltado-azul{
+    color: #008bff;
+}
+
+/*Header*/
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 92%;
+    margin: auto;
+    box-shadow: 0 2px 0px rgba(1,39,70,0.172);
+}
+
+/* header, div, nav, h4, ul, li{
+    border: 2px solid;
+} */
+
+header ul {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 0;
+    list-style: none;
+}
+
+.header-logo{
+
+ width: 55%;
+
+}
+.header-logo h5{
+    margin-left: 3px;
+}
+
+
+.header-nav{
+    width: 45%;
+    font-size: 14px;
+}
+
+.header-nav a{
+  color: #008bff;
+  text-decoration: none;
+}
+
+
+/*Secciones*/
+
+/*.main-portada, .main-portada-titulo, .main-portada-btn1, .main-portada-btns, .main-portada-redes{
+    border: 3px solid;
+}*/
+
+.main-portada{
+    margin-top: 5px;
+    width: 50%;
+    text-align: center;
+    font-family: "Space Grotesk";
+}
+
+.main-portada-btns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 26px;
+}
+
+.main-portada-redes{
+    display: flex;
+    justify-content: center;
+    gap: 56px;
+    margin-top: 35px;
+    
+
+}
+
+.main-portada-btn1 h6{
+ font-family: monospace;
+font-size: 11px;
+ padding: 8px 20px;
+ border-radius: 22px;
+ display: inline-block;
+ 
+ margin: 20px;
+ box-shadow: 0px 1px 4px rgba(1,39,70,0.172);
+}
+
+.main-portada-titulo .resaltado-azul{
+ display: block;
+ margin-top: 5px;
+
+}
+
+.main-portada-titulo h1{
+font-size: 50px;
+font-weight: 900;
+
+}
+.main-portada-titulo p{
+font-size: 18px;
+text-wrap: balance;
+line-height: 26px;
+}
+
+.main-portada-titulo{
+padding: 5px;
+}
+
+.btn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #008bff;
+    color: white;
+    padding: 0px 35px;
+    border-radius: 8px;
+    min-width: 111px;
+    height: 50px;
+
+}
+
+.btn-border{
+    border: 3px solid;
+    background-color: transparent;
+    color: #008bff;
+}
+
+.btn-redes{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+   font-size: 1.6rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 5px 1px 4px rgba(1,39,70,0.172);
+    color: black;
+}
+
+/*
+===========
+Posicionar una imagen de fondo.
+==========
+.main-portada{
+    background-image: url(BernabeFerreyra.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+} */
+
+/*------------
+Habilidades
+--------------*/
+
+.main-habilidades > *{
+    border: 3px solid;
+}
+
+.main-habilidades{
+    margin-top: 111px;
+}
