@@ -1,0 +1,140 @@
+:root {
+ --gris_bg: #f5f5f7;
+ --blanco_bg: #ffff;
+
+ --azul-boton: #0071e3;
+
+ --negro_primario: #1d1d1f;
+ --gris_primario: #747475;
+
+
+}
+/*/////////////////
+ESTILOS GENERALES
+///////////////////////*/
+
+body{
+    margin: 0;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+}
+/* header, div, nav, ul, li, section, main, body, a, p{
+ border: 2.3px solid;
+} */
+ 
+/* section div{
+    border: 3px solid;
+ } */
+
+/* img, nav, header{
+  border: #0071e3 3px solid;
+}  */
+
+.portada_btn{
+    color: var(--blanco_bg);
+    background-color: var(--azul-boton);
+
+}
+
+
+/*/////////////////
+ENCABEZADO
+///////////////////////*/
+.header-img img{
+    width: 11px;
+}
+.header-img{
+    width: 5%;
+
+}
+
+.header-img{
+    display: flex;
+    justify-content: center;
+}
+.header-img-logo{
+    display: flex;
+    align-items: center;
+}
+.header-img-logo img{
+    width: 11px;
+}
+
+#store-logo img{
+    width: 14px;
+}
+.logo-lupa-Store{
+    width: 10%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header{
+    margin-left: 111px;
+    margin-right: 111px;
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+}
+header ul{
+    display: flex;
+    padding-left: 0;
+    justify-content: space-evenly;
+}
+header ul li{
+ list-style: none;
+}
+header nav{
+    width: 90%;
+}
+
+/*/////////////////
+ESTILOS GENERALES
+///////////////////////*/
+
+
+
+.portada-prod_img img{
+    margin: 0;
+    width: 80%;
+}
+
+.portada, .portada-multiple{
+background: #ffffff;
+background: linear-gradient(358deg, rgba(255, 255, 255, 1) 15%, rgba(225, 244, 250, 1) 76%);
+font-family: monospace;
+}
+.portada, .portada_inf, .portada-prod, .portada-prod_texto, .portada-prod_img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+        text-decoration: none;
+}
+.portada_btn{
+    text-align: center;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    padding:  0.8% 14px;
+
+}
+
+.portada-multiple{
+    display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+
+}
+
+.portada_izquierda, .portada_derecha{
+flex: 1; /*detalle ocupa el 50% si son 2*/
+}
+
+
+
