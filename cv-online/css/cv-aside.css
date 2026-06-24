@@ -1,0 +1,150 @@
+:root{
+    --azul-bg: #012e58;
+}
+
+
+
+
+
+.container{
+    display: flex;
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 74%;
+    background-color: rgba(225, 230, 235, 0.199);
+}
+.sidebar{
+    width: 26%;
+    background-color: var(--azul-bg);
+    color: white;
+      display: flex;
+    flex-direction: column;
+    padding: 3%;
+    border-bottom: 3px solid black;
+
+}
+
+.sidebar-container{
+      display: flex;
+    flex-direction: column;
+
+    height: 80%;
+    gap: 5%;
+}
+
+
+.sidebar_img img{
+    width: 92%;
+    height: 92%;
+    border-radius: 10%;
+    border: 2px solid;
+}
+.sidebar_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.sidebar-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+ margin-top: 0;
+    background-color: transparent;
+    font-family: monospace;
+
+    padding: 0% 5%;
+}
+
+.sidebar-card a{
+    color: rgb(252, 121, 69);
+    text-decoration: none;
+}
+.sidebar-card a:hover{
+    color: rgb(255, 255, 255);
+}
+
+
+.sidebar_titulo{
+   
+    border-bottom: 2px solid var(--azul-bg);
+}
+
+
+p{
+    margin: 0;
+    padding: 0;
+}
+.hero-card_xp{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 1.5%;
+    font-weight: bold;
+    background-color: rgba(138, 138, 148, 0.055);
+
+}
+
+
+.hero-section{
+    flex: 1;
+}
+.hero-card_span{
+    display: block;
+}
+.tittle{
+    display: inline-block;
+    width: fit-content; /*para que se alinie al contenedor y nos e estire*/
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    
+}
+
+.main-hero{
+    padding: 3%;
+    margin: 0;
+}
+
+.main-hero_tittle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(240, 180, 180, 0.034);
+    height: 18vh;
+}
+.main-hero_tittle h1{
+    margin-top: 0;
+    border-bottom: 1px solid #4055694f;
+}
+
+main{
+    width: 80%;
+    margin: 0 auto;
+    font-family: monospace;
+}
+
+.sidebar-lista{
+    padding-left: 10%;
+    margin-top: 0;
+}
+
+
+
+.lista-sin-estilo {
+    list-style: none;
+     padding-left: 0;
+    }
+    
+.lista{
+
+        padding-left: 3%;
+}
+.sidebar_avatar{
+
+    object-fit: cover; /*para que la imagen se adapte la contenedor*/
+}
+
+
