@@ -130,8 +130,17 @@ main{
     padding-left: 10%;
     margin-top: 0;
 }
+ 
 
 
+.contact-item {
+    display: flex;
+    align-items: center;
+}
+.contact-item ion-icon{
+    margin-right: 1.5vh;
+     flex-shrink: 0;
+}
 
 .lista-sin-estilo {
     list-style: none;
