@@ -95,13 +95,16 @@ btnMostrar.addEventListener("click", function () {
 const btnMostrar4 = document.getElementById("btn-car-4");
 const listaAutos = document.getElementById("view-cars-4");
 
-btnMostrar4.addEventListener("click", function(){
+btnMostrar4.addEventListener("click", mostrarFiat4);
+    
+    listaAutos.innerHTML += "</ul>"; //cerrar lista dinamica luego de agregar todos los li.
+
+function mostrarFiat4(){
+
     const autosFiat = autos.filter(auto => auto.marca.toLowerCase() === "fiat"); // filtrar elementos
     listaAutos.innerHTML = "<ul>" // agregar lista dinamica
-
-    autosFiat.forEach(auto => listaAutos.innerHTML +=  //sumar li a la lista dinamica con informacion adjunta
-        `<li>Auto color: ${auto.color}, Modelo: ${auto.modelo}, Marca: ${auto.marca}</li>`
-    );
     
-    listaAutos.innerHTML += "</ul>" //cerrar lista dinamica luego de agregar todos los li.
-});
+    autosFiat.forEach(auto => listaAutos.innerHTML +=  //sumar li a la lista dinamica con informacion adjunta
+        `<li>Auto color: ${auto.color}, Modelo: ${auto.modelo}, Marca: ${auto.marca}</li>`);
+};
+    

@@ -1,0 +1,32 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 1.5rem;
+}
+
+#listado-productos{
+    margin: 3vh;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.card-producto img{
+    width: 80%;
+    height: 50%;
+    margin: 1.5vh;
+    object-fit: contain;
+}
+
+.card-producto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 30vh;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+}
