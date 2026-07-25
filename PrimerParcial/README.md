@@ -1,7 +1,7 @@
 
 <div align="center">
-    <img src="/preview-1.jpg" alt="Vista Principal" />
-    <img src="/preview-2.jpg" alt="Carrito de compras"/>
+    <img src="/PrimerParcial/preview-1.jpg" alt="Vista Principal" />
+    <img src="/PrimerParcial/preview-2.jpg" alt="Carrito de compras"/>
     <h1>PRIMER PARCIAL PROGRAMACION III - UTN FRA</h1>
     <p><strong>Adriano Vazquez</strong></p>
 </div>
@@ -97,4 +97,4 @@ Actualiza el contador de productos del carrito.
 
 - Imagen propuesta por el profesor.
 
-<img src="/sample.jpegg" alt="Imagen de muestra"/>
+<img src="/PrimerParcial/sample.jpegg" alt="Imagen de muestra"/>
