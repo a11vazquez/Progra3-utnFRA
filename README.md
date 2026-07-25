@@ -3,6 +3,13 @@
 - Tps
 - web app final frontend/backend
 
+---
+## Temas De La Catedra
+
+- HTML, CSS - Flexbox, responsive, position, ejercitacion.
+- JavaScript - Manipulacion del DOM, separado en 8 modulos hasta llegar al modulo backend.
+- Node, Express
+---
 ### ...
 
 
