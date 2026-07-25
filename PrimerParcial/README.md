@@ -97,4 +97,4 @@ Actualiza el contador de productos del carrito.
 
 - Imagen propuesta por el profesor.
 
-<img src="/PrimerParcial/sample.jpegg" alt="Imagen de muestra"/>
+<img src="/PrimerParcial/sample.jpeg" alt="Imagen de muestra"/>
