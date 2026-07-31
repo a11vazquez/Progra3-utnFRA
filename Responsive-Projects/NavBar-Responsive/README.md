@@ -1,4 +1,4 @@
-# Responsive NavBar - Hamburguer Menu
+# Responsive NavBar - HamMenu
 
 ![sample 1](./preview.jpg)
 ![sample 2](./preview1.jpg)
