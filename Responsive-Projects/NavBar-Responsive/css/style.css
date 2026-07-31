@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 2px solid white; */
+}
+
+body{
+    height: 100%;
+    max-width: 1200px;
+    background-color: #000000;
+    background-image: url(https://preview.redd.it/high-res-starfield-image-for-gaming-mat-v0-8oqbl6oe5cvf1.jpg?width=1080&crop=smart&auto=webp&s=89802b0e933ee6004b0347516865327377b8d404);
+    background-size: cover;
+    background-position: center;
+}
+
+.logo{
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 1.4rem;
+}
+
+.logo span{
+    font-weight: bold;
+    color:#ff0000;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+
+nav{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    margin: 20px 30px;
+}
+
+.nav-links{
+    height: 100%;
+
+}
+
+.nav-links ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a{
+    display: block;
+    padding: 1rem;
+    color: #ffffff;
+    transition: transform .3s ease;
+
+}
+
+ .nav-links li a:hover{
+     transform: scale(1.3);
+    border-bottom: #ff0000a4 1px solid;
+ }
+
+
+/*MENU ICON*/
+
+.menu-button{
+    position: absolute;
+    top: 1.2rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 3rem;
+    height: 2.1rem;
+}
+
+.menu-bars{
+    height: 3px;
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 11px;
+}
+
+
+/*================
+     Responsive
+==================
+*/
+
+@media (max-width: 600px){
+    nav{
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 3px 10px;
+    }
+
+.nav-links{
+    width: 100%;
+    display: none; 
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links ul{
+    width: 100%;
+
+    flex-direction: column;
+}
+
+.nav-links ul li{
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.nav-links ul li a{
+    padding: 0.8rem 1rem;
+}
+
+.nav-links ul li a:hover{
+    transform: scale(1.03);
+}
+
+.nav-links.active{
+    display: flex;
+}
+
+.menu-button{
+    display: flex;
+}
+
+}
+
+
