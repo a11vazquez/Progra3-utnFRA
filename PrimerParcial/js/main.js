@@ -38,6 +38,9 @@ let productos = [
   }
 ];
 
+const alumno = { nombre: "Adriano", apellido: "Vazquez"} ;
+
+
 /¨Variables¨/
 const productList = document.getElementById("product-list"); //Section Productos
 const filterInput = document.getElementById("filter-input"); // input filtro productos
@@ -50,24 +53,26 @@ let cart = []; //Array del carrito
 let card = ""; //Card Producto
 let totalProducts = 0;
 
-const alumno = { nombre: "Adriano", apellido: "Vazquez"} ;
 const user = document.getElementById("user-name");
 
 init();
 
 /¨ Exercise 1 - Mostrar Datos Del Usuario¨/
 
-function init(){
+ function init(){
     viewUser();
     loadCart();
     viewProducts(productos);
 }
+
+
 
 function viewUser(){
     user.textContent = `${alumno.nombre} ${alumno.apellido}`;
 }
 
 /¨Exercise 2 - Renderizar Tarjetas Producto¨/
+
 
 function viewProducts(array){
     card = "";
