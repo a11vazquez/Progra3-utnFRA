@@ -1,7 +1,26 @@
 
 
 const alumno = { nombre: "Adriano", apellido: "Vazquez"} ;
+
+
+/¨Variables¨/
+const productList = document.getElementById("product-list"); //Section Productos
+const filterInput = document.getElementById("filter-input"); // input filtro productos
+const cartList = document.getElementById("cart-items"); // section mostrar productos del carrito
+let cartCounter = document.getElementById("cart-counter"); // contador de productos del carrito
+let totalCartPrice = document.getElementById("cart-total_price"); // precio total de los productos del carrito.
+
 let apiProducts = [];
+let elements = "";
+let cart = []; //Array del carrito
+let card = ""; //Card Producto
+let totalProducts = 0;
+
+const user = document.getElementById("user-name");
+
+//init();
+
+init()
 obtenerDatos();
 
 async function obtenerDatos(){
@@ -11,7 +30,8 @@ async function obtenerDatos(){
     
         apiProducts = await res.json();
 
-        init()
+        viewProducts(apiProducts);
+       
     } catch (e) {
         console.log(`ERROR CAPTURADO, ${e}`, e.message);
     }
@@ -20,8 +40,8 @@ async function obtenerDatos(){
 
  function init(){
     viewUser();
-    loadCart();
-    viewProducts(apiProducts);
+     loadCart();
+    
 }
 
 function viewProducts(array){
@@ -39,23 +59,6 @@ function viewProducts(array){
     });
     productList.innerHTML = card;
 }
-
-
-/¨Variables¨/
-const productList = document.getElementById("product-list"); //Section Productos
-const filterInput = document.getElementById("filter-input"); // input filtro productos
-const cartList = document.getElementById("cart-items"); // section mostrar productos del carrito
-let cartCounter = document.getElementById("cart-counter"); // contador de productos del carrito
-let totalCartPrice = document.getElementById("cart-total_price"); // precio total de los productos del carrito.
-
-let elements = "";
-let cart = []; //Array del carrito
-let card = ""; //Card Producto
-let totalProducts = 0;
-
-const user = document.getElementById("user-name");
-
-//init();
 
 /¨ Exercise 1 - Mostrar Datos Del Usuario¨/
 
