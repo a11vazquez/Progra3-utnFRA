@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/main.js"></script>
+    <title>Tienda</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+             <p>Tienda, Bienvenido <span id="user-name">User Name</span></p>   
+            </div>
+
+            <div class="search-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                </svg>
+                <input 
+                type="text" 
+                id="filter-input"
+                class="search-container_input" 
+                placeholder="Escriba Aqui..">
+            </div>
+
+            <div class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M15 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M17 17h-11v-14h-2" />
+                    <path d="M6 5l14 1l-1 7h-13" />
+                </svg>
+                <span id="cart-counter" class="cart-index">8</span>
+            </div>
+        </nav>
+    </header>
+    <main>
+    
+
+        <section class="container">
+
+            <div class="container-info">
+                <h1>Productos</h1>
+                <div class="container-OrderBy">
+                    <p>ORDER BY</p>
+                    <button class="order-btn" onclick="orderByPrice()">Precio</button>
+                    <button class="order-btn" onclick="orderNormal()">Normal</button>
+                </div>
+            </div>
+
+           <section class="list" id="product-list">
+             <!-- <div class="card-product">
+            <img src="${p.path_img}" alt="${p.nombre}">
+            <h3>${p.nombre}</h3>
+            <p>$${p.precio}</p>
+            <button onclick="addToCart(${p.id})">Add To Cart</button>
+            </div>
+             -->
+           </section>
+
+           <aside class="cart-container" id="viewCart">
+            <h2>Carrito</h2>
+            
+            <div class="cart-container_items">
+                <ul id="cart-items">
+                    <li>No hay productos</li>
+                </ul>
+            </div>
+
+            <div class="cart-container_footer">
+                <strong>Total : <span id="cart-total_price">$0.00</span></strong>
+                <button class="cart-btn" onclick="cleanCart()">Vaciar Carrito</button>
+            </div>
+           </aside>
+
+        </section>
+    </main>
+</body>
+</html>
