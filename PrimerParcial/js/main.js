@@ -138,6 +138,7 @@ function viewCart(){
         cart.forEach((p, i) =>{
             elements += `
                 <li class="cart-item">${p.nombre} - $${p.precio} - Cantidad ${p.cantidad}
+                    
                     <button class="cart-btn" onclick="deleteProduct(${i})">Delete</button>
                 </li>
             `

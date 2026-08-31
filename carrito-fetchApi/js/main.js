@@ -13,12 +13,29 @@ let totalCartPrice = document.getElementById("cart-total_price"); // precio tota
 let apiProducts = [];
 let elements = "";
 let cart = []; //Array del carrito
+let dolarPrice = []; // Array fetch Dolar-Api
 let card = ""; //Card Producto
 let totalProducts = 0;
 
 const user = document.getElementById("user-name");
 
 //init();
+
+
+async function obtenerDatosDolar(){
+    try {
+        
+        const res = await fetch('https://dolarapi.com/v1/dolares');
+    
+        const dolarPrice = await res.json();
+    
+    console.table(dolarPrice);
+       
+    } catch (e) {
+        console.log(`ERROR CAPTURADO, ${e}`, e.message);
+    }
+}
+
 
 init()
 obtenerDatos();
@@ -29,9 +46,7 @@ async function obtenerDatos(){
         const res = await fetch("https://fakestoreapi.com/products/");
     
         apiProducts = await res.json();
-
         viewProducts(apiProducts);
-       
     } catch (e) {
         console.log(`ERROR CAPTURADO, ${e}`, e.message);
     }
@@ -41,7 +56,7 @@ async function obtenerDatos(){
  function init(){
     viewUser();
      loadCart();
-    
+    obtenerDatosDolar();
 }
 
 function viewProducts(array){
