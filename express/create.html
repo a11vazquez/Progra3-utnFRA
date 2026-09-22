@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <title>Crear Producto</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">View products</a></li>
+                <li><a href="search.html">Search Id</a></li>
+                <li><a href="create.html">Create</a></li>
+                <li><a href="">Delete</a></li>
+                <li><a href="">Modify</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>crear producto</h1>
+        <section class="createProduct-Container">
+            <form id="altaProducts-container">
+                <input type="hidden" name="id" value="${p.id}">
+                <label for="nameProd">Name</label>
+                <input type="text" name="name" id="nameProd" required>
+
+                <label for="imageProd">Image</label>
+                <input type="text" name="image" id="imageProd" required>
+
+                <label for="priceProd">Price</label>
+                <input type="number" name="price" id="priceProd" required>
+
+                <label for="imageProd">Select Category :</label>
+                <select name="category" id="categoryProd">
+                    <option value="auriculares">Auriculares</option>
+                    <option value="iphod's">Iphod</option>
+                </select>
+
+                <input type="submit" value="create product">
+            </form>
+
+            <article class="product-list">
+
+            </article>
+        </section>
+
+        <script type="module">    
+            /*Crear producto, enviando peticion a metodo POST a traves de los datos de un FORM */
+            const URL = "http://localhost:3000"
+            let altaProducts_container = document.getElementById("altaProducts-container");
+            const productList = document.querySelector(".product-list");
+
+                altaProducts_container.addEventListener("submit", async (event) =>{
+                event.preventDefault(); //prevenimos el envio de datos por defecto del FORM
+                    
+                //convertir los clave-valor del formData en objeto.
+                let producto = Object.fromEntries(new FormData(event.target));
+                //console.log(`Product ${JSON.stringify(producto)}`);
+            
+                //let producto = Object.fromEntries(formData);
+
+                try {
+                    let response = await fetch(`${URL}/products`,{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(producto) //parsea el objeto js a json para enviarlo por http
+                });
+
+                if(response.ok){
+                    console.log(response);
+                    let result  = await response.json();
+                    console.log(`${result.message} - Id Product : ${result.idProduct}`);
+                }else
+                 throw new Error("Erorr al insertar, no se a creado el producto");
+                  
+                } catch (err) {
+                    console.error(err);
+                    console.log(`Error en la conexion al enviar los datos del producto`, err);
+                }
+            });
+
+
+            //LOGICA DE RENDERIZAR LA CARD DEL PRODUCTO AL SER RETORNADO Y, HACER UN PUSH AL ARRAY DE PRODUCTOS.
+        </script>
+    </main>
+</body>
+</html>

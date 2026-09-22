@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <title>VISTAS</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">View products</a></li>
+                <li><a href="search.html">Search Id</a></li>
+                <li><a href="create.html">Create</a></li>
+                <li><a href="delete.html">Delete</a></li>
+                <li><a href="">Modify</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div>
+                <h1>Two Click!</h1>
+                <p>Compra tu producto Apple en dos clicks</p>
+                <h2>Agregá, señá y buscá.</h2>
+
+            </div>
+            <a href="#container"><button>View Products</button></a>
+        </section>
+        <h1>Lista De Productos</h1>
+        <section id="container" class="container">
+
+        </section>
+
+    </main>
+    <script type="module">
+            /*Obtener productos desde el FRONT lado del cliente */
+            import API_URL from "./src/api/config/api.js"
+   // const url = 'http://localhost:3000'
+
+   const container = document.querySelector(".container");
+    async function obtenerProductos()
+    {
+        try {
+            
+            let res = await fetch(`http://localhost:3000/products`);
+            let data = await res.json();
+            
+            let products = data.payload;
+            console.log("View Products");
+            console.table(products);
+            renderProducts(products);
+        } catch (error) {
+                console.error('error obteniendo productos : ', error);
+        }
+        }
+
+        function renderProducts(array){
+            array.forEach(p => { 
+                container.appendChild(createProductCard(p));
+            });
+        }
+        
+    function createProductCard(p){
+             const card = document.createElement("div");
+                card.classList.add("card-product");
+
+                 card.innerHTML = `
+                    <img src="" alt="">
+                    <h3 data-product-title></h3> 
+                    <p data-product-category></p>
+                    <p data-product-price></p>
+                    <button class="card-btn">Add To Cart</button>
+                </div>
+            `;
+           
+           const img = card.querySelector("img");
+           img.src = p.img;
+           img.alt = p.name;
+
+           const title = card.querySelector("[data-product-title]");
+            title.textContent = p.name;
+
+            const category = card.querySelector("[data-product-category]");
+            category.textContent = p.category;
+
+            const price = card.querySelector("[data-product-price]");
+            price.textContent = `$${p.price}`;
+
+            return card;
+    }
+        function init(){
+            obtenerProductos();
+        }
+init();
+
+            // const btnBuy = card.querySelector(".card-btn");
+            // btnBuy.addEventListener("click", (e) =>{
+            //     e.preventDefault();
+            // });
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <title>VISTAS</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">View products</a></li>
+                <li><a href="search.html">Search Id</a></li>
+                <li><a href="create.html">Create</a></li>
+                <li><a href="">Delete</a></li>
+                <li><a href="">Modify</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+        <h1>Buscar Producto</h1>
+        <form id="searchForm">
+            <label for="searchProd">Id Product :</label>
+            <input type="number" name="id" id="searchProd" required>
+            <button type="sumbit" id>buscar</button>
+        </form>
+        <section class="container">
+                
+        </section>
+
+    </main>
+        <script type="module">
+            /*Obtener productos desde el FRONT lado del cliente */
+            import API_URL from "./src/api/config/api.js"
+   // const url = 'http://localhost:3000'
+
+   const container = document.querySelector(".container");
+   const form = document.getElementById("searchForm");
+            let product1;
+           
+        form.addEventListener("submit", async (e)=> {
+            e.preventDefault(); // prevenir el envio por default
+
+            //convierto pares clave-valor del FormData a objeto, de ahi destructuro la prpiedad id, sacada del name="id"
+            const {id} = Object.fromEntries(new FormData(e.target));
+            //const id = new FormData(event.target).get("id");
+    
+             try {
+            
+            let res = await fetch(`http://localhost:3000/products/${id}`);
+            let {product} = await res.json();
+            product1 = product;
+            console.log(`PRODUCT 1 : ${product1}`);
+            // let product = data.product;
+           printProduct(product);
+           //e.stopPropagation();
+
+        } catch (error) {
+                console.error('error obteniendo productos : ', error);
+        }
+        });
+      
+async function actualizarProducto(event){
+    event.preventDefault();
+    event.stopPropagation();
+    let p = Object.fromEntries(new FormData(event.target));
+
+
+    console.log(p, p.name);
+    console.log("Form datos put method");
+    try {
+                let res = await fetch(`http://localhost:3000/products`, {
+                    method: "PUT",
+                    headers:{
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(p)
+                });
+
+                let result = await res.json();
+                if(res.ok){
+                    alert(result.message);
+                    console.log(result.message);
+                    container.innerHTML = `<h1 style="display: flex; text-align: center; font-size: 5rem; color: green;"> Producto Modificado Con Exito</h1>`;
+                }else{
+                    alert("ERROR", result.message);
+                    console.log("Error : ", result.message);
+                }
+                
+            } catch (error) {
+                console.log("ERROR AL Modificar PRODUCTO", error);
+            }
+}
+
+        function printProduct(p){
+            
+            
+            container.innerHTML =`
+            <ul class="ul-product">
+                <li class="li-product">
+                    <img src="${p.img}" alt="Imagen del producto">
+                    <p>Id: ${p.id} | Name: ${p.name} | Category: ${p.category} | Price: <strong>$${p.price}</strong> </p>
+                    </li>
+                    <li>
+                        <button class="btn-eliminar" data-btn-modify>Modificar Producto</button>
+                    </li>
+            </ul>
+            `;
+        }
+
+
+        
+            async function crearFormulario(p){
+                container.innerHTML = `
+                <form id="altaProducts-container">
+               
+                <input type="hidden" name="id" value="${p.id}">
+                <label for="nameProd">Name</label>
+                <input type="text" name="name" id="nameProd" value="${p.name}" required>
+
+                <label for="imageProd">Image</label>
+                <input type="text" name="image" id="imageProd" value="${p.img}" required>
+
+                <label for="priceProd">Price</label>
+                <input type="number" name="price" id="priceProd" value="${p.price}" required>
+
+                <label for="imageProd">Select Category :</label>
+                <select name="category" id="categoryProd">
+                    <option value="auriculares">Auriculares</option>
+                    <option value="iphod's">Iphod</option>
+                </select>
+
+                <input type="submit" value="Actualizar Producto">
+            </form>
+                `;
+
+                const updateForm = document.getElementById("altaProducts-container");
+                updateForm.addEventListener("submit", e =>{
+                    actualizarProducto(e);
+                });
+            }
+        //const btnEliminar = document.querySelector(".btn-eliminar");
+            container.addEventListener("click", async (event) => {
+                let btnModify = event.target.closest("[data-btn-modify]");
+
+                if(!btnModify) //si el boton eliminar no causo el  evento return.
+                    return;
+
+                    crearFormulario(product1);
+              
+            });
+
+
+    // async function obtenerProductos()
+    // {
+    //     try {
+            
+    //         let res = await fetch(`http://localhost:3000/products/${id}`);
+    //         let data = await res.json();
+            
+    //         let product = data.payload;
+    //         console.table(product);
+    //         container.appendChild(createProductCard(product));
+    //     } catch (error) {
+    //             console.error('error obteniendo productos : ', error);
+    //     }
+    //     }
+
+    //     function renderProducts(array){
+    //         array.forEach(p => { 
+    //             container.appendChild(createProductCard(p));
+    //         });
+    //     }
+        
+    function createProductCard(p){
+             const card = document.createElement("div");
+                card.classList.add("card-product");
+
+                 card.innerHTML = `
+                    <img src="" alt="">
+                    <h3 data-product-title></h3> 
+                    <p data-product-category></p>
+                    <p data-product-price></p>
+                    <button class="card-btn">Add To Cart</button>
+            `;
+           
+           const img = card.querySelector("img");
+            console.log(p);
+            console.log(p.img);
+
+           img.src = p.img;
+           img.alt = p.name;
+
+           const title = card.querySelector("[data-product-title]");
+            title.textContent = p.name;
+
+            const category = card.querySelector("[data-product-category]");
+            category.textContent = p.category;
+
+            const price = card.querySelector("[data-product-price]");
+            price.textContent = `$${p.price}`;
+
+            return card;
+    }
+        // function init(){
+        //     obtenerProductos();
+        // }
+// init();
+
+            // const btnBuy = card.querySelector(".card-btn");
+            // btnBuy.addEventListener("click", (e) =>{
+            //     e.preventDefault();
+            // });
+
+
+    </script>
+</body>
+</html>
