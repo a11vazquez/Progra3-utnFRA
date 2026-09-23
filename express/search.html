@@ -51,11 +51,26 @@
     
              try {
             
-            let res = await fetch(`http://localhost:3000/products/${id}`);
-            let {product} = await res.json();
-            
+                 let res = await fetch(`http://localhost:3000/products/${id}`);
+                 let data = await res.json();
+                 let product = data.product;
+                if(res.ok){ 
+               // let products = data.payload;
+               container.innerHTML= "";
+                container.appendChild(createProductCard(product));
+                console.log("View Products");
+                console.table(product);
+                renderProducts(product);
+            }else{
+                console.log(data.message);
+                alert(data.message);
+                 container.innerHTML = `
+                <div class="error-message">
+                    <p>ERROR! ${data.message}</p>
+                </div>
+            `;
+            }
             // let product = data.product;
-            container.appendChild(createProductCard(product));
         } catch (error) {
                 console.error('error obteniendo productos : ', error);
         }

@@ -6,6 +6,9 @@ import express, { json, response } from "express"; //importamos el framework exp
 import connection from "./src/api/database/db.js"; //importamos la conexion a la BDD
 import environments from "./src/api/config/environments.js"; //importamos las varriables de entorno (.env)
 import cors from "cors"; //Modulo para que la api pueda ser consumida
+import morgan from "morgan";
+import { validateId } from "./src/api/middlewares/middlewares.js";
+
 const app = express(); //contiene la ejecucion de la instancia express
 const PORT = environments.port;
 
@@ -15,9 +18,10 @@ const PORT = environments.port;
 
 app.use(cors()); // permite las peticiones externas
 app.use(express.json()); // parsea los datos a json, metodos POST PUT PATH
+app.use(morgan("dev")); //middleware registra cada peticion http, dev modo desarrollo. combined modo produccion(por defecto)
 
-    
 
+//app.use(validateId);
 
     /*===================
         Endpoints
@@ -47,7 +51,7 @@ app.get("/products", async (resq, res) =>{
             message: rows.length == 0 ? "No hay Productos" : "Productos Encontrados"
         });
 
-        console.log("Productos : ", payload.rows);
+        console.log("Productos : ", rows);
 
     } catch (err) {
         console.error(err)
@@ -60,18 +64,26 @@ app.get("/products", async (resq, res) =>{
 
 
 //Buscar Producto por ID
-app.get("/products/:id", async (req, res) => {
+app.get("/products/:id", validateId, async (req, res) => {
     try {
         //destructuring solo la id de los parametros, simil let id = req.params.id;
         let {id} = req.params; 
+
+      
 
         let sentenceSql = `SELECT * from products WHERE id = ?`;
         const [rows] = await connection.query(sentenceSql,[id]); //Id reemplaza el ?, evita SQL INJECTION
         console.log("Producto obtenido por id: ", rows[0]);
 
-        res.status(200).json({
-              product: rows[0],
-        });
+        if(rows.length){
+            res.status(200).json({
+                  product: rows[0],
+            });
+        }else{
+            return res.status(404).json({
+                message: "NOT FOUND, No se encontro el producto con el ID buscada"
+            });
+        }
     } catch (error) {
            console.error(err)
 
@@ -109,7 +121,7 @@ app.post("/products", async (req, res) => {
 
 
 //Eliminar Producto
-app.delete("/products/:id", async (req, res) =>{
+app.delete("/products/:id", validateId, async (req, res) =>{
     try {
         let {id} = req.params;
         console.log(`ID PRODUCTO DEL SERVER: ${id}`);
@@ -117,11 +129,17 @@ app.delete("/products/:id", async (req, res) =>{
         //let sql = "UPDATE FROM products  set active = 0 WHERE id = ?"
         let [result] = await connection.query(sql, [id]);
 
-        console.log(result);
-        return res.status(200).json({
-            result,
-            message: `PRODUCT WITH ${id} DELETED`
-        });
+            if(result.affectedRows){
+                console.log(result);
+                return res.status(200).json({
+                    result,
+                    message: `PRODUCT WITH ${id} DELETED`
+                });
+            }else{
+                res.status(404).json({
+                    message: "ERROR!, No se encontro ningun producto con el ID buscado"
+                });
+            }
         
     } catch (error) {
         console.log(`ERROR AL ELIMINAR PRODUCTO CON ID ${id}`);
@@ -136,14 +154,31 @@ app.delete("/products/:id", async (req, res) =>{
 app.put("/products", async (req, res) =>{
     try {
         let {id, name, image, price, category} = req.body;
-        console.log(req.body);
-        let sql = "UPDATE products set name = ?, img = ?, price = ?, category = ? WHERE id = ?";
-        let result = await connection.query(sql,[name, image, price, category, id]);
-        console.log(result);
 
-        res.status(200).json({
-            message: "Producto actualizado correctamente"
-        });
+        //validacion campos requeridos.
+        if(!id || !name || !image || !price || !category){
+           return res.status(400).json({
+                message: "campos no requeridos, no pueden ser null"
+            });
+        }
+
+            console.log(req.body);
+            let sql = "UPDATE products set name = ?, img = ?, price = ?, category = ? WHERE id = ?";
+            let result = await connection.query(sql,[name, image, price, category, id]);
+            console.log(result);
+            
+     if(result.affectedRows){
+                console.log(result);
+                res.status(200).json({
+                message: "Producto actualizado correctamente"
+            });
+            }else{
+                res.status(404).json({
+                    message: "ERROR!, No se encontro ningun producto con el ID buscado"
+                });
+            }
+           
+        
 
     } catch (error) {
         console.error("Error al actualzar producto : ", error);

@@ -47,12 +47,25 @@
             
             let res = await fetch(`http://localhost:3000/products`);
             let data = await res.json();
-            
-            let products = data.payload;
-            console.log("View Products");
-            console.table(products);
-            renderProducts(products);
+
+            //Si no encontro ningun producto
+            if(res.ok){ 
+                let products = data.payload;
+                console.log("View Products");
+                console.table(products);
+                renderProducts(products);
+            }else{
+                console.log(data.message);
+                alert(data.message);
+                 container.innerHTML = `
+                <li class="error-message">
+                    <p>ERROR! ${data.message}</p>
+                </li>
+            `;
+            }
+
         } catch (error) {
+           
                 console.error('error obteniendo productos : ', error);
         }
         }
