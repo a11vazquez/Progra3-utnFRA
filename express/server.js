@@ -2,7 +2,8 @@
 /*===================
         IMPORTS
 =====================*/
-import express, { json, response } from "express"; //importamos el framework express.js
+// , { json, response } 
+import express from "express"; //importamos el framework express.js
 import environments from "./src/api/config/environments.js"; //importamos las varriables de entorno (.env)
 import cors from "cors"; //Modulo para que la api pueda ser consumida
 import morgan from "morgan";

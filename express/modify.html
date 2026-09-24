@@ -84,7 +84,7 @@ async function actualizarProducto(event){
                 if(res.ok){
                     alert(result.message);
                     console.log(result.message);
-                    container.innerHTML = `<h1 style="display: flex; text-align: center; font-size: 5rem; color: green;"> Producto Modificado Con Exito</h1>`;
+                    container.innerHTML = `<h1 style="display: flex; text-align: center; color: green;"> Producto Modificado Con Exito</h1>`;
                 }else{
                     alert("ERROR", result.message);
                     console.log("Error : ", result.message);
