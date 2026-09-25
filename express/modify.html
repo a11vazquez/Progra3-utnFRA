@@ -50,7 +50,7 @@
     
              try {
             
-            let res = await fetch(`http://localhost:3000/products/${id}`);
+            let res = await fetch(`http://localhost:3000/api/products/${id}`);
             let {product} = await res.json();
             product1 = product;
             console.log(`PRODUCT 1 : ${product1}`);
@@ -72,7 +72,7 @@ async function actualizarProducto(event){
     console.log(p, p.name);
     console.log("Form datos put method");
     try {
-                let res = await fetch(`http://localhost:3000/products`, {
+                let res = await fetch(`http://localhost:3000/api/products`, {
                     method: "PUT",
                     headers:{
                         "content-type": "application/json"

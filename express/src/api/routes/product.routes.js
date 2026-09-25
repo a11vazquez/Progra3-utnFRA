@@ -1,7 +1,7 @@
 import {Router} from "express"; //importamos middleware router
-import connection from "./src/api/database/db.js"; //importamos la conexion a la BDD
-import { validateId } from "../middlewares/middlewares.js";  // importamos middleware de validacion numerica del ID
-import { createProduct, deleteProductById, getProductById, getProducts, modifyProduct } from "../controllers/products.controllers.js"; //controllers, donde se hace logica de la peticion y, la respuesta.
+
+import { validateCamps, validateId } from "../middlewares/middlewares.js";  // importamos middleware de validacion numerica del ID
+import { createProduct, deleteProductById, getProductById, getProducts, modifyProduct } from "../controllers/product.controller.js"; //controllers, donde se hace logica de la peticion y, la respuesta.
 const router = Router(); // ejecuta la instancia de la funcion Router();
 
 
@@ -13,12 +13,12 @@ router.get("/:id", validateId, getProductById);
 
 
 //Crear Producto
-router.post("/", createProduct);
+router.post("/",createProduct);
 
 //Eliminar Producto
 router.delete("/:id", validateId, deleteProductById);
 
 //Modificar producto
-router.put("/", modifyProduct);
+router.put("/", validateCamps, modifyProduct);
 
 export default router;

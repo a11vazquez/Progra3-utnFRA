@@ -50,7 +50,7 @@
     
              try {
             
-            let res = await fetch(`http://localhost:3000/products/${id}`);
+            let res = await fetch(`http://localhost:3000/api/products/${id}`);
             let {product} = await res.json();
             product1 = product;
             console.log(`PRODUCT 1 : ${product1}`);
@@ -59,14 +59,14 @@
            //e.stopPropagation();
 
         } catch (error) {
-                console.error('error obteniendo productos : ', error);
+                console.log("error obteniendo productos : ", error.message);
         }
         });
       
 async function eliminarProducto(id){
     console.log("ID PRODUCTO : ", id);
     try {
-                let res = await fetch(`http://localhost:3000/products/${id}`, {
+                let res = await fetch(`http://localhost:3000/api/products/${id}`, {
                     method: "DELETE"
                 });
 

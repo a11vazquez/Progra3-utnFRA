@@ -19,8 +19,8 @@ const PORT = environments.port;
 
 app.use(cors()); // permite las peticiones externas
 app.use(express.json()); // parsea los datos a json, metodos POST PUT PATH
-app.use(morgan("dev")); //middleware registra cada peticion http, dev modo desarrollo. combined modo produccion(por defecto)
 app.use("/api/products", productRoutes); // use middleware Routes, pasa la ruta base hacia routes que se encarga de ejecutar la carga del metodo.
+app.use(morgan("dev")); //middleware registra cada peticion http, dev modo desarrollo. combined modo produccion(por defecto)
 
 /*===================
         Endpoints
