@@ -1,0 +1,28 @@
+    <main>
+        <h1>crear producto</h1>
+        <section class="createProduct-Container">
+            <form id="altaProducts-container">
+                <input type="hidden" name="id" value="${p.id}">
+                <label for="nameProd">Name</label>
+                <input type="text" name="name" id="nameProd" required>
+
+                <label for="imageProd">Image</label>
+                <input type="text" name="image" id="imageProd" required>
+
+                <label for="priceProd">Price</label>
+                <input type="number" name="price" id="priceProd" required>
+
+                <label for="imageProd">Select Category :</label>
+                <select name="category" id="categoryProd">
+                    <option value="auriculares">Auriculares</option>
+                    <option value="iphod's">Iphod</option>
+                </select>
+
+                <input type="submit" value="create product">
+            </form>
+
+            <article class="product-list">
+
+            </article>
+        </section>
+        <script src="js/create.js"></script>
