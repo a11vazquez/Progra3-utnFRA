@@ -5,14 +5,14 @@ import { createProduct, deleteProductById, getProductById, getProducts, modifyPr
 const router = Router(); // ejecuta la instancia de la funcion Router();
 
 
-//Buscar Productos
+//GET - Buscar Productos
 router.get("/", getProducts); //logica de la peticion y , la respuesta en controllers
 
-//Buscar Producto por ID
+// GET - Buscar Producto por ID
 router.get("/:id", validateId, getProductById);
 
 
-//Crear Producto
+//POST - Crear Producto
 router.post("/",createProduct);
 
 //Eliminar Producto

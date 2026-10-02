@@ -2,7 +2,9 @@
 //Ej: import {productRoutes, orderRoutes} from "./index.js"
 
 import productRoutes from "./product.routes.js"
+import viewsRoutres from "./views.routes.js"
 
 export {
-    productRoutes //exporta todas las rutas de productos 
+    productRoutes, //exporta todas las rutas de productos 
+    viewsRoutres
 }

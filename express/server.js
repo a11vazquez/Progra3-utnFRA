@@ -8,28 +8,33 @@ import environments from "./src/api/config/environments.js"; //importamos las va
 import cors from "cors"; //Modulo para que la api pueda ser consumida
 import morgan from "morgan"; //modulo que guarda y, muestra cada peticion al Sv
 import expressEjsLayouts from "express-ejs-layouts";
+import session from "express-session";
 
 //rutas de los endpoints
 import { productRoutes } from "./src/api/routes/index.js";
 
+//configuracion de la ruta absoluta del proyecto
 import { _dirname, join } from "./src/api/utils/index.js";
-import connection from "./src/api/database/db.js";
-import { validateId } from "./src/api/middlewares/middlewares.js";
+
 
 
 const app = express(); //contiene la ejecucion de la instancia express
-const PORT = environments.port;
+const PORT = environments.port; 
+const SESSION_KEY = environments.session_key;
 
 /*=================
     Middelwares
 =====================*/
 
 app.use(cors()); // permite las peticiones externas
+app.use(morgan("dev")); //middleware registra cada peticion http, dev modo desarrollo. combined modo produccion(por defecto)
 app.use(express.json()); // parsea los datos a json, metodos POST PUT PATH
 app.use("/api/products", productRoutes); // use middleware Routes, pasa la ruta base hacia routes que se encarga de ejecutar la carga del metodo.
 app.use(express.static(join(_dirname, "src/public"))); 
+app.use(session({
+        secret: SESSION_KEY, //configurar una pw para firmar la cookie y, no permitir alterar sesiones
 
-app.use(morgan("dev")); //middleware registra cada peticion http, dev modo desarrollo. combined modo produccion(por defecto)
+}));
 
 
 
@@ -54,51 +59,7 @@ app.set("layout", "layout/main");
 =====================*/
 
 // .render index, gracias al set, el render busca las vistas, las vistas las setiamos en la carpeta src/views, busca el nombre "index", sabiendo que es .ejs por el set del view engine como ejs, que seria el motor que se especifica para servir plantillas estaticas.
-app.get("/dashboard", async (req, res) =>{
 
-        const [rows] = await connection.query("SELECT * from products")
-        res.render("index", {
-                title: "Dashboard",
-                about: "Lista de Productos",
-                products: rows
-                //layout: "layouts/admin" <-- para usar otro layout en una vista
-                //layout: false <-- para desactivar el layout en una vista
-        });
-});
-
-app.get("/search", async (req, res) =>{
-
-        // const {id} = req.params;
-        // const [rows] = await connection.query("SELECT * from products where id = ?", [id]);
-        res.render("search", {
-                title: "Search By Id"
-      
-                //layout: "layouts/admin" <-- para usar otro layout en una vista
-                //layout: false <-- para desactivar el layout en una vista
-        });
-});
-
-app.get("/create", async (req, res) =>{
-
-        res.render("create", {
-                title: "Crear Producto",
-                about: "Producto",
-        });
-});
-
-app.get("/modify", async (req, res) =>{
-
-        res.render("modify", {
-                title: "Modificar Producto"
-        });
-});
-
-app.get("/delete", async (req, res) =>{
-
-        res.render("delete", {
-                title: "Eliminar Producto"
-        });
-});
 
 
 app.get("/", async (resq, res) =>{
