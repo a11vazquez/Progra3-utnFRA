@@ -20,7 +20,16 @@ const validateCamps = (req, res, next) =>{
             }
                 next();
 }
+
+const sessionValidate = (req, res, next) =>{
+    if(!req.session.user){
+       return res.redirect("login");
+    }
+    next();
+}
+
 export {
     validateId,
-     validateCamps
+    validateCamps,
+    sessionValidate
 }

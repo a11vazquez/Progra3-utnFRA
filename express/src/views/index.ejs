@@ -10,15 +10,15 @@
         </section>
         <h1><%= about %></h1>
         <section id="container" class="container">
-            <% products.forEach( p => { %> //etiqueta js
+            <% products.forEach( p => { %> 
          <div class="card-product">
-            <img src="<%= p.img %>" alt="<%= p.name %>"> //=etiqueta de asignacion como si fueran templates.
+            <img src="<%= p.img %>" alt="<%= p.name %>"> 
                     <h3> <%= p.name %></h3> 
                     <p><%= p.category %></p>
                     <p><%= p.price%></p>
                     <button class="card-btn">Add To Cart</button>
                 </div>
-            <%})%>//fin de etiqueta js, para que lo interprete como codigo js.
+            <%})%>
 
         </section>
 

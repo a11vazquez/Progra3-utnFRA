@@ -21,8 +21,23 @@
                 <input type="submit" value="create product">
             </form>
 
-            <article class="product-list">
+            <article class="product-list"> </article>
 
-            </article>
+            <div class="createUser">
+                <h1>Crear Usuario</h1>
+                <form autocomplete="off"  id="altaUser-form" >
+    
+                    <label for="nameUser">Name</label>
+                    <input type="text" name="name" id="nameUser" required>
+    
+                    <label for="emailUser">Email</label>
+                    <input type="email" name="email" id="emailUser" required>
+    
+                    <label for="passwordUser">Password</label>
+                    <input type="password" name="password" id="passwordUser" required>
+    
+                    <input type="submit" value="Crear Usuario">
+                </form>
+            </div>
         </section>
         <script src="js/create.js"></script>

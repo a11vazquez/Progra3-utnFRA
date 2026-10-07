@@ -35,7 +35,35 @@
                     console.log(`Error en la conexion al enviar los datos del producto`, err);
                 }
             });
-
-
             //LOGICA DE RENDERIZAR LA CARD DEL PRODUCTO AL SER RETORNADO Y, HACER UN PUSH AL ARRAY DE PRODUCTOS.
   
+            const altaUseForm = document.getElementById("altaUser-form");
+            altaUseForm.addEventListener("submit", async  event => {
+                event.preventDefault();
+                console.log("creando usuario submit form user");
+
+                let formData = Object.fromEntries(new FormData(event.target));
+                    console.log("datos form : ", formData);
+                try {
+                      const response = await fetch(`${URL}/api/user`,{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const result  = await response.json();
+                     console.log("STATUS:", response.status);
+                    console.log("RESULTADO DEL SERVIDOR:", result);
+
+                    if (response.ok) {
+                        console.log(`${result.message} - Id usuario: ${result.userID}`);
+                    } else {
+                        throw new Error(result.message || "Error al crear usuario");
+                    }
+
+                } catch (error) {
+                        console.log( error.message);
+                }
+            });

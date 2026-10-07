@@ -1,5 +1,5 @@
-import connection  from "../database/db.js" // importo el pool de conexiones
 import productModels from "../models/product.models.js";
+
 //GET products METHOD 
 export const getProducts =  async (req, res) =>{
     try {
